@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>沉岭的情人节问卷</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(to bottom, #000, #200);
+      color: #fff;
+      font-family: 'Orbitron', sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    .question {
+      display: none;
+      margin-top: 50px;
+    }
+    .active {
+      display: block;
+    }
+    .option {
+      border: 2px solid #f00;
+      padding: 10px;
+      margin: 10px;
+      cursor: pointer;
+    }
+    .option:hover {
+      background: #f00;
+      color: #000;
+    }
+    .feedback {
+      margin-top: 20px;
+      color: #f00;
+    }
+  </style>
+</head>
+<body>
+  <h1>沉岭的情人节问卷</h1>
+  <div id="question1" class="question active">
+    <p>问题1：你觉得爱情中最重要的是什么？</p >
+    <div class="option" data-score="1">A. 信任</div>
+    <div class="option" data-score="3">B. 占有</div>
+    <div class="option" data-score="-2">C. 自由</div>
+    <div class="feedback"></div>
+  </div>
+  <!-- 更多问题 -->
+  <div id="result" style="display: none;">
+    <h2>结局</h2>
+    <p id="outcome"></p >
+  </div>
+  <script>
+    let score = 0;
+    const questions = document.querySelectorAll('.question');
+    let currentQuestion = 0;
+
+    document.querySelectorAll('.option').forEach(option => {
+      option.addEventListener('click', () => {
+        score += parseInt(option.getAttribute('data-score'));
+        showFeedback(option.textContent);
+        setTimeout(nextQuestion, 2000);
+      });
+    });
+
+    function showFeedback(choice) {
+      const feedback = document.querySelector('.feedback');
+      if (choice.includes('信任')) {
+        feedback.textContent = "你真是个温柔的人呢，但我希望你能更依赖我。";
+      } else if (choice.includes('占有')) {
+        feedback.textContent = "很好，你已经开始理解我的爱了。";
+      } else {
+        feedback.textContent = "自由？你真的觉得我会给你自由吗？";
+      }
+    }
+
+    function nextQuestion() {
+      questions[currentQuestion].classList.remove('active');
+      currentQuestion++;
+      if (currentQuestion < questions.length) {
+        questions[currentQuestion].classList.add('active');
+      } else {
+        showResult();
+      }
+    }
+
+    function showResult() {
+      document.getElementById('result').style.display = 'block';
+      const outcome = document.getElementById('outcome');
+      if (score >= 35) {
+        outcome.textContent = "彻底沦陷：你已无法离开我，你的每一寸灵魂都属于我。让我们一起坠入永恒的深渊吧。";
+      } else if (score >= 10) {
+        outcome.textContent = "危险依赖：你试图逃离，但我的爱早已将你束缚。你越是挣扎，就越无法摆脱我。";
+      } else {
+        outcome.textContent = "无情的背叛：你竟敢拒绝我？没关系，我会用我的方式让你永远留在我身边。";
+      }
+    }
+  </script>
+</body>
+</html>
