@@ -1,0 +1,80 @@
+/* 基本样式 */
+body {
+  background: linear-gradient(to bottom, #000000, #200000);
+  color: #ffffff;
+  font-family: 'Orbitron', sans-serif;
+  text-align: center;
+  padding: 20px;
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  color: #ff0000;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+/* 问题容器 */
+.question {
+  display: none;
+  margin-top: 20px;
+}
+
+.question.active {
+  display: block;
+}
+
+/* 选项样式 */
+.option {
+  border: 2px solid #ff0000;
+  padding: 10px 20px;
+  margin: 10px auto;
+  cursor: pointer;
+  width: 80%;
+  max-width: 300px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.option:hover {
+  background: #ff0000;
+  color: #000000;
+}
+
+/* 反馈信息 */
+.feedback {
+  margin-top: 20px;
+  color: #ff0000;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* 倒计时 */
+.timer {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 1.5rem;
+  color: #ff0000;
+}
+
+/* 结局页面 */
+#result {
+  display: none;
+  margin-top: 50px;
+}
+
+#result h2 {
+  color: #ff0000;
+  font-size: 2rem;
+}
+
+#outcome {
+  font-size: 1.2rem;
+  margin-top: 20px;
+  color: #ffffff;
+}
